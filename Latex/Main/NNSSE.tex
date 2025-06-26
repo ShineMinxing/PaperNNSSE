@@ -210,12 +210,12 @@ Because the true motion can be highly nonlinear, model~\eqref{1_4} rarely yields
 \begin{aligned}
 {v_i} =& {w_{v1}}\frac{{{p_i} - {p_{i - 1}}}}{T} + {w_{v2}}{v_{i - 1}}\\
     =& {w_{v1}}\frac{{{p_i} - {p_{i - 1}}}}{T} + {w_{v1}}{w_{v2}}\frac{{{p_{i - 1}} - {p_{i - 2}}}}{T} + {w_{v1}}w_{v2}^{\rm{2}}\frac{{{p_{i - {\rm{2}}}} - {p_{i - {\rm{3}}}}}}{T}{\rm{ + }}...\\
-    =& w_{v1}\sum_{k=0}^{\infty} w_{v2}^{k}\,
+    =& w_{v1}\sum_{k=0}^{i-1} w_{v2}^{k}\,
        \frac{p_{\,i-k}-p_{\,i-k-1}}{T},\\
 {a_i} =& {w_{a1}}\frac{{{p_i} - 2{p_{i - 1}} + {p_{i - 2}}}}{{{T^2}}} + {w_{a2}}{a_{i - 1}}\\
     =& {w_{a1}}\frac{{{p_i} - 2{p_{i - 1}} + {p_{i - 2}}}}{{{T^2}}}+ {w_{a1}}{w_{a2}}\frac{{{p_{i - 1}} - 2{p_{i - 2}} + {p_{i - 3}}}}{{{T^2}}} \\
     +& {w_{a1}}w_{a2}^{\rm{2}}\frac{{{p_{i - 2}} - 2{p_{i - 3}} + {p_{i - 4}}}}{{{T^2}}}{\rm{ + }}...\\
-    =& w_{a1}\sum_{k=0}^{\infty} w_{a2}^{k}\,
+    =& w_{a1}\sum_{k=0}^{i-1} w_{a2}^{k}\,
         \frac{p_{\,i-k}-2p_{\,i-k-1}+p_{\,i-k-2}}{T^{2}} .
 \end{aligned}
 \end{equation}
@@ -234,20 +234,19 @@ Substituting~\eqref{1_6} into~\eqref{1_7} yields a weighted finite-difference ex
 \begin{equation}
 \label{1_8}
 \begin{aligned}
-p_{i+n} &=
-p_i+n w_{v1}(p_i-p_{i-1})+n w_{v1}w_{v2}(p_{i-1}-p_{i-2})+\cdots\\
-&\quad +n^{2}w_{a1}(p_i-2p_{i-1}+p_{i-2})
-       +n^{2}w_{a1}w_{a2}(p_{i-1}-2p_{i-2}+p_{i-3})+\cdots\\
-&= w_1 p_i+w_2 p_{i-1}+w_3 p_{i-2}+\ldots,
+p_{i+n} &=\, p_i + nTw_{v1}\sum_{k=0}^{i-1} w_{v2}^{k} \frac{p_{\,i-k}-p_{\,i-k-1}}{T}\\
+&+\tfrac12 n^{2}T^{2} w_{a1}\sum_{k=0}^{i-1} w_{a2}^{k}\frac{p_{\,i-k}-2p_{\,i-k-1}+p_{\,i-k-2}}{T^{2}} = \sum_{k=0}^{i} w_k p_k,
 \end{aligned}
 \end{equation}
 
 \noindent
-showing that, under model~\eqref{1_4}, long-term prediction ultimately degenerates into a weighted sum of historical positions—an intrinsic limitation when the target executes nonlinear manoeuvres.
+Under model~\eqref{1_4}, long-term prediction ultimately reduces to a weighted sum of past positions, an intrinsic limitation when the target executes nonlinear manoeuvres.  To validate the potential of position‐only estimated states, we construct the corresponding state–space models.
 
-
-To examine whether \emph{position‐only} estimated states can sustain accurate tracking, we start with the \emph{estimator with two-position} (E2P).  Under the simple discrete rule
-\(p_{i+1}=p_i+(p_i-p_{i-1})\) the corresponding state–space model is
+We begin with the \emph{two–position estimator} (E2P), based on  
+\[
+p_{i+1}=p_i+(p_i-p_{i-1}),
+\]
+which yields
 \begin{equation}
 \label{eq:E2P}
 \begin{aligned}
@@ -255,73 +254,95 @@ x_{i+1} &=
 \begin{bmatrix}
 2 & -1\\
 1 &  0
-\end{bmatrix}x_i+
+\end{bmatrix}x_i +
 \begin{bmatrix}
 1&0\\[2pt]
 0&1
-\end{bmatrix}u_i, &
+\end{bmatrix}u_i, 
+&
 z_i &=
 \begin{bmatrix}
 1&0
-\end{bmatrix}x_i+v_i,
+\end{bmatrix}x_i + v_i,
 \end{aligned}
 \end{equation}
-with state vector \(x_i=[p_i,p_{i-1}]^{\mathsf T}\).
+with \(x_i=[p_i,p_{i-1}]^{\mathsf T}\).
 
 \medskip
-This idea extends naturally to longer position histories.  Defining
-\(x_i=[p_i,p_{i-1},p_{i-2}]^{\mathsf T}\) yields the \emph{estimator with three-position} (E3P),
-\[
-p_{i+1}=p_i+\frac12(p_i-p_{i-1})+\frac12(p_{i-1}-p_{i-2}),
-\]
-while the \emph{estimator with four-position} (E4P) adopts
-\[
-p_{i+1}=p_i+\frac13(p_i-p_{i-1})+\frac13(p_{i-1}-p_{i-2})
-                     +\frac13(p_{i-2}-p_{i-3}),
-\]
-and the \emph{estimator with four-position and variable-weight} (E4PVW) uses
-\[
-p_{i+1}=p_i+\frac{3\,(p_i-p_{i-1})}{6}
-                 +\frac{2\,(p_{i-1}-p_{i-2})}{6}
-                 +\frac{\;(p_{i-2}-p_{i-3})}{6}.
-\]
+By extending the position history, we obtain higher‐order variants.  Defining  
+\(x_i=[p_i,p_{i-1},p_{i-2}]^{\mathsf T}\) gives the \emph{three–position estimator} (E3P),  
+and \(x_i=[p_i,p_{i-1},p_{i-2},p_{i-3}]^{\mathsf T}\) yields the \emph{four–position estimator} (E4P):
+\begin{equation}
+\label{eq:E3P,E4P}
+\begin{aligned}
+p_{i+1}&=p_i+\tfrac12(p_i-p_{i-1})+\tfrac12(p_{i-1}-p_{i-2}),\\
+p_{i+1}&=p_i+\tfrac13(p_i-p_{i-1})+\tfrac13(p_{i-1}-p_{i-2})
+                     +\tfrac13(p_{i-2}-p_{i-3}).
+\end{aligned}
+\end{equation}
+A \emph{variable–weight four–position estimator} (E4PVW) further refines the weights:
+\begin{equation}
+\label{eq:E4PVW}
+p_{i+1}
+= p_i
++ \frac{3(p_i-p_{i-1})}{6}
++ \frac{2(p_{i-1}-p_{i-2})}{6}
++ \frac{(p_{i-2}-p_{i-3})}{6}.
+\end{equation}
 
 \medskip
-Greater flexibility is available when the weights are \emph{learned} from data.
-The off-line \emph{estimator with four-position and regressed-weight} (E4PRW) takes
-\[
-p_{i+1}=1.2668\,p_i
-        -0.0152\,p_{i-1}
-        +0.0103\,p_{i-2}
-        -0.2618\,p_{i-3},
-\]
-whereas the on-line \emph{estimator with four-position and timely-regressed-weight} version (E4PTRW) updates the coefficients
-every step using the most recent 50 samples.
+For even greater flexibility, the weights may be \emph{learned} from data.  The offline \emph{four–position estimator with regressed weights} (E4PRW) uses
+\begin{equation}
+\label{eq:E4PRW}
+p_{i+1}
+= 1.2668\,p_i
+- 0.0152\,p_{i-1}
++ 0.0103\,p_{i-2}
+- 0.2618\,p_{i-3},
+\end{equation}
+while its online counterpart (E4PTRW) updates these coefficients at each step using the most recent 50 samples.
 
 \medskip
-Simulations in Figs.\,\ref{fig:pos_pred} and~\ref{fig:acc_err} show that all
-position-stack estimators surpass classical Kalman filters built on
-\([p_i]\), \([p_i,v_i]\), \([p_i,v_i,a_i]\), and \([p_i,v_i,a_i,\dot a_i]\) (the last including the jerk
-\(\dot a_i\)).  Accuracy improves with longer stacks (E3P, E4P) and peaks when
-adaptive or regressed weights (E4PVW, E4PRW, E4PTRW) are employed.
+Simulation results in Figs.~\ref{fig:pos_pred} and~\ref{fig:acc_err} show that all position‐stack estimators outperform classical Kalman filters built on  
+\([p_i]\), \([p_i,v_i]\), \([p_i,v_i,a_i]\), and \([p_i,v_i,a_i,\dot a_i]\) (the latter including jerk \(\dot a_i\)).  
+Accuracy increases with longer stacks (E3P, E4P) and peaks for variants with adaptive or regressed weights (E4PVW, E4PRW, E4PTRW), with E4PRW notably narrowing the error band and E4PTRW further enhancing adaptability.
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=3in]{fig/fig1_1.eps}
+  \includegraphics[width=4in]{fig/fig1_1.eps}
   \caption{Position prediction obtained with different estimators.}
   \label{fig:pos_pred}
 \end{figure}
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[width=3in]{fig/fig1_2.eps}
+  \includegraphics[width=4in]{fig/fig1_2.eps}
   \caption{Accumulated prediction error for the same estimators.}
   \label{fig:acc_err}
 \end{figure}
 
 \medskip
-The pre-regressed filter (E4PRW) clearly narrows the error band, and the timely-regressed  version (E4PTRW) improves adaptability even further.  Nevertheless, embedding an explicit linear‐regression routine inside every prediction step is conceptually inelegant and risks overfitting whenever the target’s motion pattern changes abruptly.  A more principled remedy is to regard the regression coefficients themselves as \emph{latent states} and let the estimator update them in real time, just as it does the kinematic variables.  This insight leads us to extend the state vector to include not only the regression coefficients but, when necessary, the entire set of weights of a neural-network approximation to the target dynamics.  These augmented states are estimated in real time by a neural network state-space model.
+Despite these gains, embedding a dedicated linear‐regression step in each prediction is conceptually inelegant and risks overfitting when the target’s motion pattern changes abruptly.  A more principled solution is to regard the regression coefficients themselves as \emph{latent states}, updating them in real time alongside the kinematic variables.  Accordingly, we extend the state vector to include not only these coefficients but, when appropriate, the full set of weights of a neural network approximation of the target dynamics.  These augmented states are then estimated online using a neural network state–space model.
 
+\section{Neural Network State‐Space Model}\label{sec3}
+
+Based on the concept of treating weights as estimated states, a new state-space model to achieve state estimation for maneuverable targets is introduced as \eqref{3_1} and Figs.~\ref{fig:NNSSM}.
+
+\begin{equation}
+\begin{aligned}
+{x_{i + 1}} &= {f_i}({x_i},{u_i}) = {f_i}({\left[ {{p_i},...,{p_{i-a+1}},...,{p_{i-a-b+2}},{w_1},...,{w_c}} \right]^T},{u_i})\\
+ &= \left[ {{p_{i + 1}},{p_i},...,{p_{i-a-b+3}},{w_1},...,{w_c}} \right]^T + {u_i}\\
+{z_i} &= {h_i}({x_i},{v_i}) = {p_i} + {v_i}
+\end{aligned}
+\label{3_1}
+\end{equation}
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=4in]{fig/fig3_1.png}
+  \caption{Neural network state‐space model.}
+  \label{fig:NNSSM}
+\end{figure}
 
 \section{This is an example for first level head---section head}\label{sec3}
 
