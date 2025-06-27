@@ -8,7 +8,7 @@ function StateSpaceModelN = StateSpaceModel106(StateSpaceModelN)
     StateSpaceModelN.InputLayer = 5;
     StateSpaceModelN.MiddleLayer = StateSpaceModelN.InputLayer;
     StateSpaceModelN.OutpuLayer = 1;
-    StateSpaceModelN.NodeCount = StateSpaceModelN.InputLayer + StateSpaceModelN.PredictStep;
+    StateSpaceModelN.NodeCount = StateSpaceModelN.InputLayer + StateSpaceModelN.PredictStep - 1;
     StateSpaceModelN.WeightCount = StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer + StateSpaceModelN.MiddleLayer * StateSpaceModelN.OutpuLayer;
     StateSpaceModelN.Nx = StateSpaceModelN.NodeCount + StateSpaceModelN.WeightCount;
     StateSpaceModelN.Nz = 1;
@@ -37,7 +37,7 @@ end
 
 % 定义各个函数的实现
 function [Out_State, StateSpaceModelN] = StateSpaceModel106StateTransitionFunction(In_State, StateSpaceModelN)
-    InputLayer = In_State((StateSpaceModelN.PredictStep+1):StateSpaceModelN.NodeCount)/StateSpaceModelN.Scale ;
+    InputLayer = In_State((StateSpaceModelN.PredictStep):StateSpaceModelN.NodeCount)/StateSpaceModelN.Scale ;
     Layer12Weight = In_State((StateSpaceModelN.NodeCount+1):(StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer));
     Layer23Weight = In_State((StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer+1):end);
     MiddleLayer = zeros(StateSpaceModelN.MiddleLayer,1);
@@ -58,7 +58,7 @@ function [Out_Observation, StateSpaceModelN] = StateSpaceModel106ObservationFunc
 end
 
 function [Out_PredictedState, StateSpaceModelN] = StateSpaceModel106PredictionFunction(In_State, StateSpaceModelN)
-    InputLayer = In_State((StateSpaceModelN.PredictStep+1):StateSpaceModelN.NodeCount)/StateSpaceModelN.Scale ;
+    InputLayer = In_State((StateSpaceModelN.PredictStep):StateSpaceModelN.NodeCount)/StateSpaceModelN.Scale ;
     Layer12Weight = In_State((StateSpaceModelN.NodeCount+1):(StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer));
     Layer23Weight = In_State((StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer+1):end);
     MiddleLayer = zeros(StateSpaceModelN.MiddleLayer,1);

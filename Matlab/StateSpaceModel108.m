@@ -9,7 +9,7 @@ function StateSpaceModelN = StateSpaceModel108(StateSpaceModelN)
     StateSpaceModelN.MiddleLayer1 = StateSpaceModelN.InputLayer;
     StateSpaceModelN.MiddleLayer2 = StateSpaceModelN.InputLayer;
     StateSpaceModelN.OutpuLayer = 1;
-    StateSpaceModelN.NodeCount = StateSpaceModelN.InputLayer + StateSpaceModelN.PredictStep;
+    StateSpaceModelN.NodeCount = StateSpaceModelN.InputLayer + StateSpaceModelN.PredictStep - 1;
     StateSpaceModelN.WeightCount = StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer1 + StateSpaceModelN.MiddleLayer1 * StateSpaceModelN.MiddleLayer2 + StateSpaceModelN.MiddleLayer2 * StateSpaceModelN.OutpuLayer;
     StateSpaceModelN.Nx = StateSpaceModelN.NodeCount + StateSpaceModelN.WeightCount;
     StateSpaceModelN.Nz = 1;
@@ -38,7 +38,7 @@ end
 
 % 定义各个函数的实现
 function [Out_State, StateSpaceModelN] = StateSpaceModel104StateTransitionFunction(In_State, StateSpaceModelN)
-    InputLayer = In_State((StateSpaceModelN.PredictStep+1):StateSpaceModelN.NodeCount)/StateSpaceModelN.Scale ;
+    InputLayer = In_State((StateSpaceModelN.PredictStep):StateSpaceModelN.NodeCount)/StateSpaceModelN.Scale ;
     Layer12Weight = In_State((StateSpaceModelN.NodeCount+1):(StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer1));
     Layer23Weight = In_State((StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer1+1):(StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer1 + StateSpaceModelN.MiddleLayer1 * StateSpaceModelN.MiddleLayer2));
     Layer34Weight = In_State((StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer1 + StateSpaceModelN.MiddleLayer1 * StateSpaceModelN.MiddleLayer2 + 1):end);
@@ -64,7 +64,7 @@ function [Out_Observation, StateSpaceModelN] = StateSpaceModel104ObservationFunc
 end
 
 function [Out_PredictedState, StateSpaceModelN] = StateSpaceModel104PredictionFunction(In_State, StateSpaceModelN)
-    InputLayer = In_State((StateSpaceModelN.PredictStep+1):StateSpaceModelN.NodeCount)/StateSpaceModelN.Scale ;
+    InputLayer = In_State((StateSpaceModelN.PredictStep):StateSpaceModelN.NodeCount)/StateSpaceModelN.Scale ;
     Layer12Weight = In_State((StateSpaceModelN.NodeCount+1):(StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer1));
     Layer23Weight = In_State((StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer1+1):(StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer1 + StateSpaceModelN.MiddleLayer1 * StateSpaceModelN.MiddleLayer2));
     Layer34Weight = In_State((StateSpaceModelN.NodeCount+StateSpaceModelN.InputLayer * StateSpaceModelN.MiddleLayer1 + StateSpaceModelN.MiddleLayer1 * StateSpaceModelN.MiddleLayer2 + 1):end);
