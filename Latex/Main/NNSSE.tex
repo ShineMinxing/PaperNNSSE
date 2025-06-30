@@ -326,12 +326,13 @@ Despite these gains, embedding a dedicated linear‐regression step in each pred
 
 \section{Neural Network State‐Space Model}\label{sec3}
 
-Based on the concept of treating weights as estimated states, a new state-space model to achieve state estimation for maneuverable targets is introduced as \eqref{3_1} and Figs.~\ref{fig:NNSSM}.
+Based on the concept of treating neural network weights as estimated states, a new state-space model to achieve state estimation for maneuverable targets is introduced as \eqref{3_1} and Figs.~\ref{fig:NNSSM}.
 
+\noindent
 \begin{equation}
 \begin{aligned}
-{x_{i + 1}} &= {f_i}({x_i},{u_i}) = {f_i}({\left[ {{p_i},...,{p_{i-a+1}},...,{p_{i-a-b+2}},{w_1},...,{w_c}} \right]^T},{u_i})\\
- &= \left[ {{p_{i + 1}},{p_i},...,{p_{i-a-b+3}},{w_1},...,{w_c}} \right]^T + {u_i}\\
+{x_{i + 1}} &= {f_i}({x_i},{u_i}) = {f_i}({\left[ {{p_i},...,{p_{i-a+1}},...,{p_{i-a-b+2}},{w_{1}},...,{w_{c}}} \right]^{\!\mathsf T}},{u_i})\\
+ &= \left[ {{p_{i + 1}},{p_i},...,{p_{i-a-b+3}},{w_{1}},...,{w_{c}}} \right]^{\!\mathsf T} + {u_i}\\
 {z_i} &= {h_i}({x_i},{v_i}) = {p_i} + {v_i}
 \end{aligned}
 \label{3_1}
@@ -343,6 +344,77 @@ Based on the concept of treating weights as estimated states, a new state-space 
   \caption{Neural network state‐space model.}
   \label{fig:NNSSM}
 \end{figure}
+
+In the proposed model, the state vector
+
+\noindent
+\begin{equation}
+{x_{i + 1}} = \left[ {{p_i},...,{p_{i-a+1}},...,{p_{i-a-b+2}},{w_{1}},...,{w_{c}}} \right]^{\!\mathsf T}
+\label{3_2}
+\end{equation}
+
+\noindent
+comprises \((a-1)+b+c\) elements in total, namely \(a+b-1\) historical position states and \(c\) weight parameters. Here:
+\begin{itemize}
+  \item \(a\) is the prediction horizon in discrete steps.  For example, if the sampling interval is \(T=0.01\)s and a 0.1s ahead prediction is required, then \(a = 10\);
+  \item \(b\) is the number of input‐layer nodes of the neural network being simulated;
+  \item \(c\) is the total number of weight parameters in that network.
+\end{itemize}
+
+These \((a-1)+b+c\) states are jointly estimated online via the neural network state–space model.
+
+Let
+\noindent
+\begin{equation}
+{x_i} = {[P_{i,1 \times (a+b-2)},{p_{i-a-b+2}},{W_{1 \times c}}]^{\!\mathsf T}},
+\label{3_3}
+\end{equation}
+
+A more detailed neural network state–space model can be written as
+\noindent
+\begin{equation}
+\begin{aligned}
+x_{i+1} &= f_i(x_i,u_i) \\ 
+        &= \bigl[f_{\mathrm{NN}}\bigl(P_{i,\,1\times(a+b-2)},\,W_{1\times c}\bigr),\;P_{i,\,1\times(a+b-2)},\;W_{1\times c}\bigr]^{\!\mathsf T}
+           + u_i \\ 
+        &= [\,p_{i+1},\;P_{i,\,1\times(a+b-2)},\;W_{1\times c}\,]^{\!\mathsf T},\\
+z_i     &= p_i + v_i.
+\end{aligned}
+\label{eq:NNSSM_detailed}
+\end{equation}
+
+
+\begin{figure}[!t]
+  \centering
+  \includegraphics[width=4in]{fig/fig3_2.png}
+  \caption{Simplest neural–network state–space model: weighted-sum iteration.}
+  \label{fig:SNNSSM}
+\end{figure}
+
+Figure~\ref{fig:SNNSSM} illustrates the iterative structure of the simplest neural network, namely a single weighted–sum node.  Let \(E_j\) denote the \(j\)-th element of the estimated state vector \(x_i\) and let \(E_{\mathrm{pre}}\) represent the quantity to be predicted at the next step.  The corresponding state–space representation is
+\begin{equation}
+\label{eq:NNSSM_simple}
+\begin{aligned}
+x_{i+1} &= f_i\!\bigl(x_i,u_i\bigr) \\[2pt]
+        &= \Bigl[P_{i,\,1\times(a+b-2)}\,W_{1\times c}^{\!\mathsf T},\;
+                 P_{i,\,1\times(a+b-2)},\;
+                 W_{1\times c}\Bigr]^{\!\mathsf T}
+           + u_i \\[2pt]
+        &= \bigl[p_{i+1},\;P_{i,\,1\times(a+b-2)},\;W_{1\times c}\bigr]^{\!\mathsf T},\\[4pt]
+z_i     &= p_i + v_i.
+\end{aligned}
+\end{equation}
+
+At time instant \(i\), the algorithm forms a weighted sum of the estimated historical positions  
+\(E_{a},\dots,E_{a+b-1}\)  and the estimated weights  
+\(E_{a+b},\dots,E_{a+b+c-1}\)  
+to obtain the prior predicted state \(x_{i+1|i}\), specifically its first element \(E_1\). 
+
+Upon receiving the new measurement \(z_{i+1}\), the filter updates all state components \(E_j\), yielding the posterior estimated state \(x_{i+1|i+1}\) and completing the \(i\!\rightarrow\!i+1\) cycle.
+
+For multi–frame prediction, the most recent position estimates \(E_{1},\dots,E_{b}\) together with the current weight estimates \(E_{a+b},\dots,E_{a+b+c-1}\) are fed into the same weighted‐sum relation to generate the required forecast.
+
+
 
 \section{This is an example for first level head---section head}\label{sec3}
 
