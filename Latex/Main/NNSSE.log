@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.6.20)  30 JUN 2025 21:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.6.20)  2 JUL 2025 00:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -671,11 +671,15 @@ Package epstopdf Info: Source file: <fig/fig1_1.eps>
 (epstopdf)             Command: <repstopdf --outfile=fig/fig1_1-eps-converted-to.pdf fig/fig1_1.eps>
 (epstopdf)             \includegraphics on input line 312.
 Package epstopdf Info: Output file is already uptodate.
-<fig/fig1_1-eps-converted-to.pdf, id=126, 421.575pt x 316.18124pt>
+<fig/fig1_1-eps-converted-to.pdf, id=166, 421.575pt x 316.18124pt>
 File: fig/fig1_1-eps-converted-to.pdf Graphic file (type pdf)
 <use fig/fig1_1-eps-converted-to.pdf>
 Package pdftex.def Info: fig/fig1_1-eps-converted-to.pdf  used on input line 312.
 (pdftex.def)             Requested size: 289.07999pt x 216.81442pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
 Package epstopdf Info: Source file: <fig/fig1_2.eps>
 (epstopdf)                    date: 2025-06-26 23:30:51
 (epstopdf)                    size: 1335845 bytes
@@ -685,15 +689,12 @@ Package epstopdf Info: Source file: <fig/fig1_2.eps>
 (epstopdf)             Command: <repstopdf --outfile=fig/fig1_2-eps-converted-to.pdf fig/fig1_2.eps>
 (epstopdf)             \includegraphics on input line 319.
 Package epstopdf Info: Output file is already uptodate.
-<fig/fig1_2-eps-converted-to.pdf, id=127, 426.59375pt x 285.065pt>
+<fig/fig1_2-eps-converted-to.pdf, id=180, 426.59375pt x 285.065pt>
 File: fig/fig1_2-eps-converted-to.pdf Graphic file (type pdf)
 <use fig/fig1_2-eps-converted-to.pdf>
 Package pdftex.def Info: fig/fig1_2-eps-converted-to.pdf  used on input line 319.
 (pdftex.def)             Requested size: 289.07999pt x 193.18481pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
@@ -705,7 +706,7 @@ l.326
                                                   \__shipout_drop_firstpage_...
 l.326 
        <./fig/fig1_1-eps-converted-to.pdf> <./fig/fig1_2-eps-converted-to.pdf>]
-<fig/fig3_1.png, id=155, 1445.4pt x 813.0375pt>
+<fig/fig3_1.png, id=196, 1445.4pt x 813.0375pt>
 File: fig/fig3_1.png Graphic file (type png)
 <use fig/fig3_1.png>
 Package pdftex.def Info: fig/fig3_1.png  used on input line 343.
@@ -718,7 +719,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
                                                   \__shipout_drop_firstpage_...
 l.384 \end{equation}
                      <./fig/fig3_1.png>]
-<fig/fig3_2.png, id=167, 2191.18625pt x 1536.74126pt>
+<fig/fig3_2.png, id=208, 2191.18625pt x 1536.74126pt>
 File: fig/fig3_2.png Graphic file (type png)
 <use fig/fig3_2.png>
 Package pdftex.def Info: fig/fig3_2.png  used on input line 389.
@@ -729,48 +730,79 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [8pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.419 \section
-              {This is an example for first level head---section head}\label... <./fig/fig3_2.png>]
+l.415 F
+       or multi–frame prediction, the most recent position estimates \(E_{... <./fig/fig3_2.png>]
+<fig/fig3_3.png, id=220, 1445.4pt x 813.0375pt>
+File: fig/fig3_3.png Graphic file (type png)
+<use fig/fig3_3.png>
+Package pdftex.def Info: fig/fig3_3.png  used on input line 425.
+(pdftex.def)             Requested size: 289.07999pt x 162.60461pt.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 467.
+ [9pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.437 
+       <./fig/fig3_3.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12]
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 619.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 467.
+(Font)              size <5> substituted on input line 619.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.015> not available
-(Font)              size <5> substituted on input line 467.
+(Font)              size <5> substituted on input line 619.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 467.
+(Font)              size <5> substituted on input line 619.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 467.
+(Font)              size <5> substituted on input line 619.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 467.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 534.
+(Font)              size <5> substituted on input line 619.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+ [13pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.548 \end{sidewaystable}
-                         ]
+l.660 \end{verbatim}
+                    ]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 686.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.717 \end{verbatim}
+                    ]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.717 \end{verbatim}
+                    ]
 Package epstopdf Info: Source file: <fig.eps>
 (epstopdf)                    date: 2025-01-06 14:47:55
 (epstopdf)                    size: 91593 bytes
@@ -778,111 +810,96 @@ Package epstopdf Info: Source file: <fig.eps>
 (epstopdf)                    date: 2025-06-20 09:38:15
 (epstopdf)                    size: 3039 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig-eps-converted-to.pdf fig.eps>
-(epstopdf)             \includegraphics on input line 574.
+(epstopdf)             \includegraphics on input line 726.
 Package epstopdf Info: Output file is already uptodate.
-<fig-eps-converted-to.pdf, id=199, 505.89pt x 84.315pt>
+<fig-eps-converted-to.pdf, id=294, 505.89pt x 84.315pt>
 File: fig-eps-converted-to.pdf Graphic file (type pdf)
 <use fig-eps-converted-to.pdf>
-Package pdftex.def Info: fig-eps-converted-to.pdf  used on input line 574.
+Package pdftex.def Info: fig-eps-converted-to.pdf  used on input line 726.
 (pdftex.def)             Requested size: 334.79773pt x 55.79987pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.591 \begin{verbatim}
-                      pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.591 \begin{verbatim}
-                       <./fig-eps-converted-to.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.591 \begin{verbatim}
-                      ]
-LaTeX Font Info:    Trying to load font information for OMS+cmss on input line 624.
-LaTeX Font Info:    No file OMScmss.fd. on input line 624.
+LaTeX Font Info:    Trying to load font information for OMS+cmss on input line 776.
+LaTeX Font Info:    No file OMScmss.fd. on input line 776.
 
 
 LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 624.
+(Font)              for symbol `textbraceleft' on input line 776.
 
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 631.
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.777      $
+            n:=n-1$; $z:=z*x$ od; <./fig-eps-converted-to.pdf>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 783.
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 666.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 818.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 666.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 818.
 
-Overfull \hbox (7.55843pt too wide) in paragraph at lines 660--672
+Overfull \hbox (7.55843pt too wide) in paragraph at lines 812--824
 []$[]$ 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
+ [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14]
+ [18]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [15]
-Underfull \hbox (badness 1859) in paragraph at lines 789--790
+ [19]
+Underfull \hbox (badness 1859) in paragraph at lines 941--942
 \OT1/cmr/m/n/10 of a clin-i-cal trial then addi-tional infor-ma-tion will be required. Please visit
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 789--790
+Underfull \hbox (badness 10000) in paragraph at lines 941--942
 \OT1/cmr/m/n/10 ([][]$https : / / www . nature . com / nature-[]research / editorial-[]policies$[][]) for Nature Port-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 789--790
+Underfull \hbox (badness 10000) in paragraph at lines 941--942
 \OT1/cmr/m/n/10 fo-lio jour-nals, ([][]$https : / / www . springer . com / gp / authors-[]editors / journal-[]author /
  []
 
 
-Underfull \hbox (badness 4634) in paragraph at lines 789--790
+Underfull \hbox (badness 4634) in paragraph at lines 941--942
 \OT1/cmr/m/n/10 journal-[]author-[]helpdesk / publishing-[]ethics / 14214$[][]) for Springer Nature jour-nals,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 789--790
+Underfull \hbox (badness 10000) in paragraph at lines 941--942
 \OT1/cmr/m/n/10 or ([][]$https : / / www . biomedcentral . com / getpublished / editorial-[]policies # ethics + and +
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]
-
 Package hyperref Warning: Difference (4) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 805.
+(hyperref)                than one, level fixed on input line 957.
 
 
 Package hyperref Warning: Difference (3) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 813.
+(hyperref)                than one, level fixed on input line 965.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17] (./NNSSE.bbl
+ [20] (./NNSSE.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18])
+ [21])
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19] (./NNSSE.aux)
+ [22] (./NNSSE.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.985pt have occurred.
@@ -894,21 +911,21 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `NNSSE.out' has not changed.
-(rerunfilecheck)             Checksum: 7B9E2F146148E81A0D6FC693D6CB070B;3391.
+(rerunfilecheck)             Checksum: BD9FBF443C947600B5E1C1CBC64AA538;6371.
  ) 
 Here is how much of TeX's memory you used:
- 14993 strings out of 480137
- 226833 string characters out of 5892821
- 725451 words of memory out of 5000000
- 32564 multiletter control sequences out of 15000+600000
+ 15050 strings out of 480137
+ 227519 string characters out of 5892821
+ 715231 words of memory out of 5000000
+ 32594 multiletter control sequences out of 15000+600000
  491373 words of font info for 118 fonts, out of 8000000 for 9000
  69 hyphenation exceptions out of 8191
- 85i,17n,90p,2227b,1663s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/unitree/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb>
-Output written on NNSSE.pdf (19 pages, 2446691 bytes).
+ 85i,17n,90p,2227b,1805s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/unitree/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb>
+Output written on NNSSE.pdf (22 pages, 2938462 bytes).
 PDF statistics:
- 480 PDF objects out of 1000 (max. 8388607)
- 386 compressed objects within 4 object streams
- 112 named destinations out of 1000 (max. 500000)
- 178 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 571 PDF objects out of 1000 (max. 8388607)
+ 469 compressed objects within 5 object streams
+ 138 named destinations out of 1000 (max. 500000)
+ 263 words of extra memory for PDF output out of 10000 (max. 10000000)
 
