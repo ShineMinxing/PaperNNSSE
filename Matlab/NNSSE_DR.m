@@ -304,7 +304,7 @@ legend('True trace', 'Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE
 title('Pitch')
 
 AccumationStart = 200;
-PathTemp1= [CurrentDir,'/EstimationResult/Data_1'];
+PathTemp1= [CurrentDir,'/EstimationResult/Data_2'];
 PathTemp2 = '/Trace10000X_';
 
 EstimatorError = abs(WriteFileData - WriteFileData(:,2));
