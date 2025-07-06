@@ -286,6 +286,7 @@ plot(WriteFileData(PLOTLINE, MODEL_DataWrite(8,1)), 'color', [0.4660 0.6740 0.18
 plot(WriteFileData(PLOTLINE, MODEL_DataWrite(9,1)), 'color', [0.6350 0.0780 0.1840])
 plot(WriteFileData(PLOTLINE, MODEL_DataWrite(10,1)), 'y')
 ylim([-60,60])
+xlabel('Simulation Steps');
 title('Estimation Result, Proposed Estimtors')
 legend('True trace', 'Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model')
 
@@ -304,6 +305,7 @@ plot(WriteFileData(PLOTLINE, MODEL_DataWrite(8,2)), 'color', [0.4660 0.6740 0.18
 plot(WriteFileData(PLOTLINE, MODEL_DataWrite(9,2)), 'color', [0.4940 0.1840 0.5560])
 plot(WriteFileData(PLOTLINE, MODEL_DataWrite(10,2)), 'y')
 ylim([-60,60])
+xlabel('Simulation Steps');
 title('Estimation Result, Proposed Estimtors')
 legend('True trace', 'Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model')
 
@@ -329,6 +331,7 @@ plot(SumEstimatorError(:, MODEL_DataWrite(7,1)), 'color', [0.8500 0.3250 0.0980]
 plot(SumEstimatorError(:, MODEL_DataWrite(8,1)), 'color', [0.4660 0.6740 0.1880])
 plot(SumEstimatorError(:, MODEL_DataWrite(9,1)), 'color', [0.4940 0.1840 0.5560])
 plot(SumEstimatorError(:, MODEL_DataWrite(10,1)),'y')
+xlabel('Simulation Steps');
 title('Accumulated Error, Proposed Estimtors')
 legend('Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model', 'location', 'NorthWest')
 
@@ -351,5 +354,6 @@ plot(SumEstimatorError(:, MODEL_DataWrite(7,2)), 'color', [0.8500 0.3250 0.0980]
 plot(SumEstimatorError(:, MODEL_DataWrite(8,2)), 'color', [0.4660 0.6740 0.1880])
 plot(SumEstimatorError(:, MODEL_DataWrite(9,2)), 'color', [0.4940 0.1840 0.5560])
 plot(SumEstimatorError(:, MODEL_DataWrite(10,2)),'y')
+xlabel('Simulation Steps');
 title('Accumulated Error, Proposed Estimtors')
 legend('Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model', 'location', 'NorthWest')
