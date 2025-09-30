@@ -1,6 +1,6 @@
 %% NNSSE for Sin trace
 
-close all; clear; clc;
+close all; clear;
 
 % Configuration
 DATA_ROWS = 10000;
@@ -28,7 +28,7 @@ WriteFileData(:, 2:5) = ReadFileData(:, [StateColumns,ObserColumns]); % Timestam
 Time = [];
 
 tic;
-% Initialize estimator structure 1
+% Initialize estimator structure 1 KF with uniformly accelerated model
 EstiamtorIndex = 1;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
 StateSpaceModel1_ = struct();
@@ -43,7 +43,7 @@ Time = [Time,toc];
 tic;
 
 
-% Initialize estimator structure 2
+% Initialize estimator structure 2 UKF with uniformly accelerated model
 EstiamtorIndex = 2;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
 StateSpaceModel107_ = struct();
@@ -58,7 +58,7 @@ Time = [Time,toc];
 tic;
 
 
-% Initialize estimator structure 3
+% Initialize estimator structure 3 NNSSE for UKF
 % X Y data are seperately handled
 EstiamtorIndex = 3;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
@@ -84,7 +84,7 @@ Time = [Time,toc];
 tic;
 
 
-% Initialize estimator structure 4
+% Initialize estimator structure 4 NNSSE for PF
 EstiamtorIndex = 4;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
 StateSpaceModel102_1 = struct();
@@ -115,7 +115,7 @@ Time = [Time,toc];
 tic;
 
 
-% Initialize estimator structure 5
+% Initialize estimator structure 5 NNSSE for EKF
 EstiamtorIndex = 5;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
 StateSpaceModel103_1 = struct();
@@ -140,7 +140,7 @@ Time = [Time,toc];
 tic;
 
 
-% Initialize estimator structure 6
+% Initialize estimator structure 6 5-5-1
 EstiamtorIndex = 6;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
 StateSpaceModel104_1 = struct();
@@ -165,7 +165,7 @@ Time = [Time,toc];
 tic;
 
 
-% Initialize estimator structure 7
+% Initialize estimator structure 7 10-10-1
 EstiamtorIndex = 7;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
 StateSpaceModel105_1 = struct();
@@ -190,7 +190,7 @@ Time = [Time,toc];
 tic;
 
 
-% Initialize estimator structure 8
+% Initialize estimator structure 8 Tanh
 EstiamtorIndex = 8;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
 StateSpaceModel106_1 = struct();
@@ -214,7 +214,7 @@ end
 Time = [Time,toc];
 tic;
 
-% Initialize estimator structure 9
+% Initialize estimator structure 9 5-5-5-1
 EstiamtorIndex = 9;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
 StateSpaceModel108_1 = struct();
@@ -238,7 +238,7 @@ end
 Time = [Time,toc];
 tic;
 
-% Initialize estimator structure 10
+% Initialize estimator structure 10 Accurate Sin Model
 EstiamtorIndex = 10;
 disp(['Start Estiamtor ',num2str(EstiamtorIndex)]);
 StateSpaceModel109_1 = struct();
@@ -287,29 +287,29 @@ plot(WriteFileData(PLOTLINE, MODEL_DataWrite(9,1)), 'color', [0.6350 0.0780 0.18
 plot(WriteFileData(PLOTLINE, MODEL_DataWrite(10,1)), 'y')
 ylim([-60,60])
 xlabel('Simulation Steps');
-title('Estimation Result, Proposed Estimtors')
+title('Estimation Result')
 legend('True trace', 'Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model')
 
-figure(2)
-hold on;grid on;
-plot(WriteFileData(PLOTLINE, 3),'k')
-plot(WriteFileData(PLOTLINE, 5),'ko')
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(1,2)), 'b')
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(2,2)), 'color', [0.6350 0.0780 0.1840])
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(3,2)), 'r')
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(4,2)), 'g')
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(5,2)), 'c')
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(6,2)), 'm')
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(7,2)), 'color', [0.8500 0.3250 0.0980])
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(8,2)), 'color', [0.4660 0.6740 0.1880])
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(9,2)), 'color', [0.4940 0.1840 0.5560])
-plot(WriteFileData(PLOTLINE, MODEL_DataWrite(10,2)), 'y')
-ylim([-60,60])
-xlabel('Simulation Steps');
-title('Estimation Result, Proposed Estimtors')
-legend('True trace', 'Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model')
+% figure(2)
+% hold on;grid on;
+% plot(WriteFileData(PLOTLINE, 3),'k')
+% plot(WriteFileData(PLOTLINE, 5),'ko')
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(1,2)), 'b')
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(2,2)), 'color', [0.6350 0.0780 0.1840])
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(3,2)), 'r')
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(4,2)), 'g')
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(5,2)), 'c')
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(6,2)), 'm')
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(7,2)), 'color', [0.8500 0.3250 0.0980])
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(8,2)), 'color', [0.4660 0.6740 0.1880])
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(9,2)), 'color', [0.4940 0.1840 0.5560])
+% plot(WriteFileData(PLOTLINE, MODEL_DataWrite(10,2)), 'y')
+% ylim([-60,60])
+% xlabel('Simulation Steps');
+% title('Estimation Result')
+% legend('True trace', 'Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model')
 
-AccumationStart = 200;
+AccumationStart = 8000;
 Length = 10000;
 
 EstimatorError = abs(WriteFileData - WriteFileData(:,2));
@@ -332,28 +332,32 @@ plot(SumEstimatorError(:, MODEL_DataWrite(8,1)), 'color', [0.4660 0.6740 0.1880]
 plot(SumEstimatorError(:, MODEL_DataWrite(9,1)), 'color', [0.4940 0.1840 0.5560])
 plot(SumEstimatorError(:, MODEL_DataWrite(10,1)),'y')
 xlabel('Simulation Steps');
-title('Accumulated Error, Proposed Estimtors')
+title('Accumulated Error')
 legend('Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model', 'location', 'NorthWest')
 
-EstimatorError = abs(WriteFileData - WriteFileData(:,3));
-SumEstimatorError = EstimatorError((end-Length+1):end,:);
-for i = AccumationStart:length(SumEstimatorError(:,1))
-    SumEstimatorError(i,:) = SumEstimatorError(i-1,:) + SumEstimatorError(i,:);
-end
+SumEstimatorError(end,MODEL_DataWrite(:,1))
 
-figure(4)
-hold on;grid on;
-plot(SumEstimatorError(:, 5),'ko')
-plot(SumEstimatorError(:, MODEL_DataWrite(1,2)),'b')
-plot(SumEstimatorError(:, MODEL_DataWrite(2,2)), 'color', [0.6350 0.0780 0.1840])
-plot(SumEstimatorError(:, MODEL_DataWrite(3,2)),'r-.+','MarkerSize',2)
-plot(SumEstimatorError(:, MODEL_DataWrite(4,2)),'g')
-plot(SumEstimatorError(:, MODEL_DataWrite(5,2)),'c')
-plot(SumEstimatorError(:, MODEL_DataWrite(6,2)),'m-.+','MarkerSize',2)
-plot(SumEstimatorError(:, MODEL_DataWrite(7,2)), 'color', [0.8500 0.3250 0.0980])
-plot(SumEstimatorError(:, MODEL_DataWrite(8,2)), 'color', [0.4660 0.6740 0.1880])
-plot(SumEstimatorError(:, MODEL_DataWrite(9,2)), 'color', [0.4940 0.1840 0.5560])
-plot(SumEstimatorError(:, MODEL_DataWrite(10,2)),'y')
-xlabel('Simulation Steps');
-title('Accumulated Error, Proposed Estimtors')
-legend('Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model', 'location', 'NorthWest')
+% EstimatorError = abs(WriteFileData - WriteFileData(:,3));
+% SumEstimatorError = EstimatorError((end-Length+1):end,:);
+% for i = AccumationStart:length(SumEstimatorError(:,1))
+%     SumEstimatorError(i,:) = SumEstimatorError(i-1,:) + SumEstimatorError(i,:);
+% end
+
+% figure(4)
+% hold on;grid on;
+% plot(SumEstimatorError(:, 5),'ko')
+% plot(SumEstimatorError(:, MODEL_DataWrite(1,2)),'b')
+% plot(SumEstimatorError(:, MODEL_DataWrite(2,2)), 'color', [0.6350 0.0780 0.1840])
+% plot(SumEstimatorError(:, MODEL_DataWrite(3,2)),'r-.+','MarkerSize',2)
+% plot(SumEstimatorError(:, MODEL_DataWrite(4,2)),'g')
+% plot(SumEstimatorError(:, MODEL_DataWrite(5,2)),'c')
+% plot(SumEstimatorError(:, MODEL_DataWrite(6,2)),'m-.+','MarkerSize',2)
+% plot(SumEstimatorError(:, MODEL_DataWrite(7,2)), 'color', [0.8500 0.3250 0.0980])
+% plot(SumEstimatorError(:, MODEL_DataWrite(8,2)), 'color', [0.4660 0.6740 0.1880])
+% plot(SumEstimatorError(:, MODEL_DataWrite(9,2)), 'color', [0.4940 0.1840 0.5560])
+% plot(SumEstimatorError(:, MODEL_DataWrite(10,2)),'y')
+% xlabel('Simulation Steps');
+% title('Accumulated Error')
+% legend('Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'Accurate Sin Model', 'location', 'NorthWest')
+
+% SumEstimatorError(end,MODEL_DataWrite(:,2))

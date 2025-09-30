@@ -1,8 +1,8 @@
-# Neural‑Network State‑Space Structure for Model‑Free Bayesian Estimation
+# Neural‑Network State‑Space Estimators
 
 This repository provides all code and data to reproduce the simulations and experiments from the paper:
 
-> **Neural‑Network State‑Space Structure for Model‑Free Bayesian Estimation**\
+> **Neural‑Network State‑Space Estimators**
 > Minxing Sun, Li Miao, Qingyu Shen, Yao Mao\*, Qiliang Bao
 
 ---
@@ -17,6 +17,7 @@ Matlab/                  # Main MATLAB scripts
   ├─ NNSSE_Drone.m       # 4. EXPERIMENT 2: UAV trajectory
   ├─ StateSpaceModel_*.m # NNSSM variants
   └─ Estimator_*.m       # EKF / UKF / PF implementations
+  └─ NNSSE_*.mat         # All data to reproduce result in paper
 
 Python/                  # Neural‑network training scripts
   ├─ 01_RNN_train_2025.py# Format: <id>_<net>_<task>_<date>.py
@@ -78,11 +79,14 @@ EstimationResult/Data_4  # full‑training
 
 1. Edit `config.json` to set paths and parameters (train/test/estimate).
 2. Run training scripts, e.g.:
+
    ```bash
    cd Python
    python 00011_RNN_Train_20241129.py
    ```
+
    or on Windows:
+
    ```bat
    NN_FullTrain.bat
    ```
@@ -93,4 +97,3 @@ EstimationResult/Data_4  # full‑training
 Contact: sunminxing20@gmail.com
 
 © 2025 Minxing Sun et al. Licensed under MIT.
-

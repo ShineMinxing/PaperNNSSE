@@ -284,7 +284,7 @@ plot(WriteFileData(PLOTLINE, MODEL_DataWrite(8,1)), 'color', [0.4660 0.6740 0.18
 plot(WriteFileData(PLOTLINE, MODEL_DataWrite(9,1)), 'color', [0.6350 0.0780 0.1840])
 ylim([1700,2600])
 legend('True trace', 'Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551')
-title('Yaw')
+title('Estimation result, Yaw')
 
 figure(2)
 hold on;grid on;
@@ -301,11 +301,12 @@ plot(WriteFileData(PLOTLINE, MODEL_DataWrite(8,2)), 'color', [0.4660 0.6740 0.18
 plot(WriteFileData(PLOTLINE, MODEL_DataWrite(9,2)), 'color', [0.4940 0.1840 0.5560])
 ylim([4500,7200])
 legend('True trace', 'Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551')
-title('Pitch')
+title('Estimation result, Pitch')
 
 AccumationStart = 200;
-PathTemp1= [CurrentDir,'/EstimationResult/Data_2'];
-PathTemp2 = '/Trace10000X_';
+PathTemp1= [CurrentDir,'/EstimationResult/Data_2']; %Data_1 for half train, Data_2 for full train
+PathTemp2 = '/Trace10000';
+PathTemp3 = 'X_';
 
 EstimatorError = abs(WriteFileData - WriteFileData(:,2));
 SumEstimatorError = EstimatorError((end-DATA_ROWS+1):end,:);
@@ -327,23 +328,25 @@ plot(SumEstimatorError(:, MODEL_DataWrite(8,1)), 'color', [0.4660 0.6740 0.1880]
 plot(SumEstimatorError(:, MODEL_DataWrite(9,1)), 'color', [0.4940 0.1840 0.5560])
 legend('Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'location', 'NorthWest')
 % ylim([0,7e4])
-title('Accumulated Error on Yaw, Proposed Estimtors')
+title('Accumulated Error, Yaw')
+
+SumEstimatorError(end,MODEL_DataWrite(:,1))
 
 
 NerveNetResult = zeros(length(SumEstimatorError(:,1)),7);
-Temp = readmatrix([PathTemp1,PathTemp2,'RNN.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'RNN.csv']);
 NerveNetResult(26:end,1) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'LSTM.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'LSTM.csv']);
 NerveNetResult(26:end,2) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'GRU.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'GRU.csv']);
 NerveNetResult(26:end,3) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'TCN.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'TCN.csv']);
 NerveNetResult(26:end,4) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'Transformer.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'Transformer.csv']);
 NerveNetResult(26:end,5) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'NeuralODE.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'NeuralODE.csv']);
 NerveNetResult(26:end,6) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'OnlineTransformer.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'OnlineTransformer.csv']);
 NerveNetResult(26:end,7) = [zeros(8,1);Temp(:,2)];
 
 NerveNetError = abs(NerveNetResult - WriteFileData((end-DATA_ROWS+1):end,2));
@@ -364,7 +367,9 @@ plot(SumNerveNetError(:, 5),'color', [0.8500 0.3250 0.0980])
 plot(SumNerveNetError(:, 6),'color', [0.4660 0.6740 0.1880])
 plot(SumNerveNetError(:, 7),'color', [0.4940 0.1840 0.5560])
 legend('NNSSE UKE', 'NNSSE 551', 'RNN', 'LSTM', 'GRU', 'TCN', 'Transformer', 'NeuralODE', 'OnlineTransformer', 'location', 'NorthWest')
-title('Accumulated Error on Yaw, Neural Networks')
+title('Accumulated Error, Yaw')
+
+SumNerveNetError(end, :)
 
 figure(5)
 hold on; grid on;
@@ -377,10 +382,10 @@ plot(NerveNetResult(:, 5),'color', [0.8500 0.3250 0.0980])
 plot(NerveNetResult(:, 6),'color', [0.4660 0.6740 0.1880])
 plot(NerveNetResult(:, 7),'color', [0.4940 0.1840 0.5560])
 legend('True trace', 'RNN', 'LSTM', 'GRU', 'TCN', 'Transformer', 'NeuralODE', 'OnlineTransformer')
-title('Estimation result on Yaw')
+title('Estimation result, Yaw')
 
 
-PathTemp2 = '/Trace10000Y_';
+PathTemp3 = 'Y_';
 
 EstimatorError = abs(WriteFileData - WriteFileData(:,3));
 SumEstimatorError = EstimatorError((end-DATA_ROWS+1):end,:);
@@ -402,22 +407,24 @@ plot(SumEstimatorError(:, MODEL_DataWrite(8,2)), 'color', [0.4660 0.6740 0.1880]
 plot(SumEstimatorError(:, MODEL_DataWrite(9,2)), 'color', [0.4940 0.1840 0.5560])
 legend('Observation', 'UAM LKE', 'UAM UKE', 'NNSSE UKE', 'NNSSE PE', 'NNSSE EKE', 'NNSSE 551', 'NNSSE 10101', 'NNSSE Tanh', 'NNSSE 5551', 'location', 'NorthWest')
 % ylim([0,3e4])
-title('Accumulated Error on Pitch, Proposed Estimtors')
+title('Accumulated Error, Pitch')
+
+SumEstimatorError(end,MODEL_DataWrite(:,2))
 
 NerveNetResult = zeros(length(SumEstimatorError(:,1)),6);
-Temp = readmatrix([PathTemp1,PathTemp2,'RNN.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'RNN.csv']);
 NerveNetResult(26:end,1) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'LSTM.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'LSTM.csv']);
 NerveNetResult(26:end,2) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'GRU.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'GRU.csv']);
 NerveNetResult(26:end,3) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'TCN.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'TCN.csv']);
 NerveNetResult(26:end,4) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'Transformer.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'Transformer.csv']);
 NerveNetResult(26:end,5) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'NeuralODE.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'NeuralODE.csv']);
 NerveNetResult(26:end,6) = Temp(:,2);
-Temp = readmatrix([PathTemp1,PathTemp2,'OnlineTransformer.csv']);
+Temp = readmatrix([PathTemp1,PathTemp2,PathTemp3,'OnlineTransformer.csv']);
 NerveNetResult(26:end,7) = [zeros(8,1);Temp(:,2)];
 
 
@@ -439,7 +446,9 @@ plot(SumNerveNetError(:, 5),'color', [0.8500 0.3250 0.0980])
 plot(SumNerveNetError(:, 6),'color', [0.4660 0.6740 0.1880])
 plot(SumNerveNetError(:, 7),'color', [0.4940 0.1840 0.5560])
 legend('NNSSE UKE', 'NNSSE 551', 'RNN', 'LSTM', 'GRU', 'TCN', 'Transformer', 'NeuralODE', 'OnlineTransformer', 'location', 'NorthWest')
-title('Accumulated Error on Pitch, Neural Networks')
+title('Accumulated Error, Pitch')
+
+SumNerveNetError(end, :)
 
 figure(8)
 hold on; grid on;
@@ -452,4 +461,4 @@ plot(NerveNetResult(:, 5),'color', [0.8500 0.3250 0.0980])
 plot(NerveNetResult(:, 6),'color', [0.4660 0.6740 0.1880])
 plot(NerveNetResult(:, 7),'color', [0.4940 0.1840 0.5560])
 legend('True trace', 'RNN', 'LSTM', 'GRU', 'TCN', 'Transformer', 'NeuralODE', 'OnlineTransformer')
-title('Estimation result on Pitch')
+title('Estimation result, Pitch')
